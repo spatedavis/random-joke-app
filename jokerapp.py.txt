@@ -1,0 +1,29 @@
+#joke app
+import tkinter as tk
+import pyjokes
+import pyttsx3  
+
+root=tk.Tk()
+root.geometry("300x200")
+root.configure(bg="black")
+root.title("Just joking")
+
+def joke():
+    #global joke
+    joke=pyjokes.get_joke()
+    T.insert(tk.END,joke)
+    engine = pyttsx3.init() 
+    engine.say(joke)  
+    engine.runAndWait() 
+
+def clear():
+    T.delete("1.0","end")
+    
+T=tk.Text(root)
+T.place(x=7,y=5,height=80,width=290)
+b=tk.Button(root,text="Joke pls",fg="white",bg="red",command=joke)
+b.place(x=35,y=100,height=50,width=100)
+b1=tk.Button(root,text="Clear",fg="white",bg="blue",command=clear)
+b1.place(x=150,y=100,height=50,width=100)
+
+root.mainloop()
